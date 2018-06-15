@@ -10,6 +10,8 @@ function ea_console(event) {
 	!RUNNING_IN_BROWSER && Log.info("msg");
 		
 	EA.run(); // typeof, nodeName
+	
+	phantom.exit();
 }
 
 document.addEventListener("DOMContentLoaded", ea_console);
