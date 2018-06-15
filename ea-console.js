@@ -2,7 +2,7 @@ import * as EA from "./modules/ea.js"; // export function name() {}
 import * as Log from "./modules/utils/log.js";
 import * as Common from "./modules/common.js"; // include export class ArgumentError()
 
-const RUNNING_IN_BROWSER = false;
+const RUNNING_IN_BROWSER = false; // don't think this is necessary
 
 function ea_console(event) {
 	Log.set_level(Log.LEVELS.DEBUG);
