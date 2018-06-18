@@ -2,6 +2,12 @@ import * as EA from "./modules/ea.js"; // export function name() {}
 import * as Common from "./modules/common.js"; // include export class ArgumentError()
 import * as CONFIG from "./modules/config.js";
 
+
+// parses args and calls ea.js
+/*
+	hot loads values into data structure which can be accessed program wide
+*/
+
 /* ENUMS
 const LEVELS = Object.freeze({"DEBUG": "0", "RELEASE": "1"});
 

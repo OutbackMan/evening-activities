@@ -3,8 +3,9 @@
 	"version": "0.0.1",
 	"scripts": {
 		"minify": "minify src -d ea.min.js",
-		"console": "", 
-		"browser": "",
+		"phantom": "phantom",
 		"something": "npm run console -- some-arg"
 	}
 }
+
+// npm run execute --debug --phantomjs | --release --browser
