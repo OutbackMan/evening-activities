@@ -2,8 +2,8 @@
 	"name": "evening-activities",
 	"version": "0.0.1",
 	"scripts": {
-		"minify": "",
-		"console": "",
+		"minify": "minify src -d ea.min.js",
+		"console": "", 
 		"browser": "",
 		"something": "npm run console -- some-arg"
 	}
