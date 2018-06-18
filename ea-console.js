@@ -10,8 +10,8 @@ classes, objects == ThisCase
 functions, variables == lower_snake_case
 */
 
-function main(listened_event) {
-	CONFIG.haIN_DEBUG_MODE && console.log("test");
+function ea(listened_event) {
+	CONFIG.IN_DEBUG_MODE && console.log("test");
 	CONFIG.IN_DEBUG_MODE && console.warn("test2");
 	console.error("test3");
 	
@@ -20,4 +20,4 @@ function main(listened_event) {
 	CONFIG.WANT_PHANTOM_JS_EXECUTION && phantom.exit();
 }
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", ea);
