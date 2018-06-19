@@ -1,6 +1,5 @@
 // rename to .mjs files
-// lint, live server
-// minify
+// lint, minify
 
 function handle_command_line_arguments() {
 	let command_line_arguments = process.argv.slice(2);
