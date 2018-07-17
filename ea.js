@@ -1,18 +1,9 @@
-       const socket = new WebSocket("ws://localhost:8080");                    
-                                                                                
-        socket.addEventListener('open', function (event) {                      
-            socket.send('Hello Server!');                                       
-        });                                                                     
-                                                                                
-        socket.addEventListener('message', function (event) {                   
-            console.log('Message from server ', event.data);                    
-        });                                                                     
-                                                                                
     // server (npm install ws)                                                  
-    let ws = require("ws");                                                     
-    let server = ws.server({port: 8080});                                       
+    let WS = require("ws");
+
+    let slither_proxy = WS.server({port: 8080});                                       
                                                                                 
-    const slither_server = new ws("ws://something");                            
+    const slither_server = new WS("ws://something");                            
                                                                                 
     server.on("connection", (websocket) => {                                    
         websocket.on("message", (msg) => {                                      
@@ -42,17 +33,24 @@ function requireUncached(module){
 }                                                                               
 fs.watch("somedir", (event, filename)) 
 
-function download_local_files() {
+function download_local_resources() {
+	download_local_resource(window.location.href);
 	window.performance.getEntriesByType("resource").forEach((resource) => {
 		if (resource.name.substring(0, window.location.href.length) === window.location.href) {
-			let a = document.createElement("a");
-        		a.href = resource.name;
-        		a.download = resource.name.substring(resource.name.lastIndexOf("/"));
-        		document.body.appendChild(a);
-       			a.click();
-        		document.body.removeChild(a);
+			download_local_resource(resource.name);
 		}
 	});
+}
+
+function download_local_resource(resource_url) {
+	let resource_url_obj = new URL(resource_url);
+	let resource_file_name = resource_url_obj.pathname.replace("/", "-");
+	let download_a_tag = document.createElement("a");
+        download_a_tag.href = resource_url;
+        download_a_tag.download = resource_file_name;
+        document.body.appendChild(download_a_tag);
+       	download_a_tag.click();
+        document.body.removeChild(download_a_tag);
 }
 
 
