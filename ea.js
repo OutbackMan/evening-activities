@@ -1,12 +1,3 @@
-function download_file() {
-var a = document.createElement("a");
-        a.href = "http://slither.io/s/game945729.js";
-        a.download = "game.js";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);   
-}
-
        const socket = new WebSocket("ws://localhost:8080");                    
                                                                                 
         socket.addEventListener('open', function (event) {                      
@@ -50,6 +41,20 @@ function requireUncached(module){
     return require(module)                                                      
 }                                                                               
 fs.watch("somedir", (event, filename)) 
+
+function download_local_files() {
+	window.performance.getEntriesByType("resource").forEach((resource) => {
+		if (resource.name.substring(0, window.location.href.length) === window.location.href) {
+			let a = document.createElement("a");
+        		a.href = resource.name;
+        		a.download = resource.name.substring(resource.name.lastIndexOf("/"));
+        		document.body.appendChild(a);
+       			a.click();
+        		document.body.removeChild(a);
+		}
+	});
+}
+
 
 
 
