@@ -7,6 +7,50 @@ var a = document.createElement("a");
         document.body.removeChild(a);   
 }
 
+       const socket = new WebSocket("ws://localhost:8080");                    
+                                                                                
+        socket.addEventListener('open', function (event) {                      
+            socket.send('Hello Server!');                                       
+        });                                                                     
+                                                                                
+        socket.addEventListener('message', function (event) {                   
+            console.log('Message from server ', event.data);                    
+        });                                                                     
+                                                                                
+    // server (npm install ws)                                                  
+    let ws = require("ws");                                                     
+    let server = ws.server({port: 8080});                                       
+                                                                                
+    const slither_server = new ws("ws://something");                            
+                                                                                
+    server.on("connection", (websocket) => {                                    
+        websocket.on("message", (msg) => {                                      
+            console.log(`[client] --> ${msg}`);                                 
+            slither_server.send(msg);                                           
+        });                                                                        
+                                                                                
+        slither_server.on("message", (msg) => {                                 
+            console.log(`[server] <-- ${msg}`);                                 
+            server.clients[0].send(msg);                                        
+        });                                                                     
+                                                                                
+        websocket.on("close", () => {                                           
+            console.log("client lost");                                         
+        });                                                                     
+    });                                                                         
+                                                                                
+    while (true) {                                                              
+        cmd = input("cmd: ");                                                   
+        if cmd[4:] == "some_cmd":                                               
+    }                                                                           
+                                                                                
+// requireUncached("./parser");                                                 
+function requireUncached(module){                                               
+    delete require.cache[require.resolve(module)]                               
+    return require(module)                                                      
+}                                                                               
+fs.watch("somedir", (event, filename)) 
+
 
 
 const CONFIG = Object.freeze({
