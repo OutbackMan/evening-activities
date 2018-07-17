@@ -1,3 +1,14 @@
+function download_file() {
+var a = document.createElement("a");
+        a.href = "http://slither.io/s/game945729.js";
+        a.download = "game.js";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);   
+}
+
+
+
 const CONFIG = Object.freeze({
 	"WANT_DEBUG_EXECUTION": true,
 	"INIT_WATCHER_DATA_VALUE": Symbol("__default__")
