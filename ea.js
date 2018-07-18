@@ -32,25 +32,7 @@ function requireUncached(module){
 }                                                                               
 fs.watch("somedir", (event, filename)) 
 
-function download_local_resources() {
-	download_local_resource(window.location.href);
-	window.performance.getEntriesByType("resource").forEach((resource) => {
-		if (resource.name.substring(0, window.location.href.length) === window.location.href) {
-			download_local_resource(resource.name);
-		}
-	});
-}
 
-function download_local_resource(resource_url) {
-	let resource_url_obj = new URL(resource_url);
-	let resource_file_name = resource_url_obj.pathname.replace("/", "-");
-	let download_a_tag = document.createElement("a");
-        download_a_tag.href = resource_url;
-        download_a_tag.download = resource_file_name;
-        document.body.appendChild(download_a_tag);
-       	download_a_tag.click();
-        document.body.removeChild(download_a_tag);
-}
 
 
 
