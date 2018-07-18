@@ -1,25 +1,24 @@
     // server (npm install ws)                                                  
     let WS = require("ws");
 
-    let slither_proxy = WS.server({port: 8080});                                       
+    let proxy_server = WS.server({hostname: "127.0.0.1", port: 8080, maxPayload: 4096, clientTracking: true});
+
+    const server_socket = new WS("ws://something");                            
                                                                                 
-    const slither_server = new WS("ws://something");                            
-                                                                                
-    server.on("connection", (websocket) => {                                    
-        websocket.on("message", (msg) => {                                      
+    proxy_server.on("connection", (client_socket) => {
+		client_socket.on("message", (msg) => {                                      
             console.log(`[client] --> ${msg}`);                                 
-            slither_server.send(msg);                                           
-        });                                                                        
-                                                                                
-        slither_server.on("message", (msg) => {                                 
+            server_socket.on("open", () => {
+				server_socket.send(msg); 
+			});                                        
+    	});
+	});
+
+   server_socket.on("message", (msg) => {                                 
             console.log(`[server] <-- ${msg}`);                                 
-            server.clients[0].send(msg);                                        
-        });                                                                     
-                                                                                
-        websocket.on("close", () => {                                           
-            console.log("client lost");                                         
-        });                                                                     
-    });                                                                         
+            proxy_server.clients[0].send(msg);                                        
+   });
+                                                                                                                                                                                                                  
                                                                                 
     while (true) {                                                              
         cmd = input("cmd: ");                                                   
